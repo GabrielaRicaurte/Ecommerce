@@ -15,6 +15,7 @@ class Order extends Model
         'payment_method',
         'payment_status',
         'status',
+        'currency',
         'shipping_amount',
         'shipping_method',
         'notes',

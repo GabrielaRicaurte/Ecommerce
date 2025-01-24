@@ -25,6 +25,7 @@ use Filament\Forms\Components\ToggleButtons;
 use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrderResource\RelationManagers;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 
@@ -179,12 +180,12 @@ class OrderResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                TextColumn::make('grand.total')
+                TextColumn::make('grand_total')
                     ->numeric()
                     ->sortable()
                     ->money('USD'),
 
-                TextColumn::make('payment_method')
+                TextColumn::make('currency')
                     ->searchable()
                     ->sortable(),
 
@@ -192,7 +193,9 @@ class OrderResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-
+                TextColumn::make('shipping_method')
+                    ->searchable()
+                    ->sortable(),
 
                 SelectColumn::make('status')
                     ->options([
@@ -205,15 +208,26 @@ class OrderResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -227,6 +241,16 @@ class OrderResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return static::getModel()::count() < 10 ? 'danger' : 'success';
     }
 
     public static function getPages(): array
