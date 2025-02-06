@@ -30,6 +30,10 @@ class BrandResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -106,6 +110,11 @@ class BrandResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email'];
     }
 
     public static function getPages(): array
