@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Title;
 use Livewire\WithPagination;
 
@@ -14,10 +15,19 @@ class ProductsPage extends Component
 {
     use WithPagination;
 
+    #[Url]
     public $selected_categories = [];
+
+    #[Url]
     public $selected_brands = [];
+
+    #[Url]
     public $featured;
+
+    #[Url]
     public $on_sale;
+
+    #[Url]
     public $price_range = 3000;
 
     public function render()
