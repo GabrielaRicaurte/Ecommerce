@@ -5,7 +5,7 @@ namespace App\Helpers;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cookie;
 
-class CartMangement{
+class CartManagement{
 
     // add item to cart
 
@@ -74,7 +74,7 @@ class CartMangement{
     static public function getCartItemsFromCookie() {
         $cart_items = json_decode(Cookie::get('cart_items'), true);
 
-        if($cart_items) {
+        if(!$cart_items) {
             $cart_items = [];
         }
 
