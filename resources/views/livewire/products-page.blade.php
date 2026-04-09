@@ -3,7 +3,7 @@
         <div class="mx-auto px-4 md:px-6 py-4 lg:py-6 max-w-7xl">
             <div class="flex flex-wrap -mx-3 mb-24">
                 <div class="lg:block pr-2 w-full lg:w-1/4">
-                    <div class="bg-white dark:bg-gray-900 mb-5 p-3 border border-gray-200 dark:border-gray-900">
+                    <div class="bg-white dark:bg-gray-900 mb-5 p-4 border border-gray-200 dark:border-gray-900">
                         <h2 class="font-bold dark:text-gray-400 text-2xl"> Categories</h2>
                         <div class="mb-6 pb-2 border-rose-600 dark:border-gray-400 border-b w-16"></div>
                         <ul>
